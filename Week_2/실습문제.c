@@ -1,30 +1,40 @@
 #include <stdio.h>
 
+int input_quantity(int *array, int quantity) {
+  int total = 0;
+  
+  for (int i = 0; i < quantity; i++) {  // 수량 입력
+    scanf("%d", &array[i]);
+  }
+  for (int i = 0; i < quantity; i++) {  // 총 수량 계산
+    total += array[i];
+  }
+
+  return total;
+}
+
+void print_max_min(int *array, int min, int max) {
+  printf("\n가장 많이 판매된 상품 : ID %d, 판매량 %d", max + 1, array[max]);
+  printf("\n가장 적게 판매된 상품 : ID %d, 판매량 %d", min + 1, array[min]);
+}
+
+void check_low_stock(int *array, int amount) {
+  for (int i = 0; i < amount; i++) {
+    if (array[i] < 3) {
+      printf("\n상품 ID %d : 재고부족(%d)", i + 1, array[i]);
+    }
+  }
+}
+
 int main() {
   int amount;
   scanf("%d", &amount);
 
   int receive[100];
-
-  for (int i = 0; i < amount; i++) {
-    scanf("%d", &receive[i]);
-  }
-
-  int total_receive = 0; // 총 입고수량
-  for (int i = 0; i < amount; i++) {
-    total_receive += receive[i];
-  }
+  int total_receive = input_quantity(receive, amount);
 
   int sell[100];
-
-  for (int i = 0; i < amount; i++) {
-    scanf("%d", &sell[i]);
-  }
-
-  int total_sales = 0; // 총 판매수량
-  for (int i = 0; i < amount; i++) {
-    total_sales += sell[i];
-  }
+  int total_sales = input_quantity(sell, amount);
 
   int stock[100];
 
@@ -52,14 +62,8 @@ int main() {
     }
   }
   
-  printf("\n가장 많이 판매된 상품 : ID %d, 판매량 %d", max_sales + 1, sell[max_sales]);
-  printf("\n가장 적게 판매된 상품 : ID %d, 판매량 %d", min_sales + 1, sell[min_sales]);
-
-  for (int i = 0; i < amount; i++) {
-    if (stock[i] < 3) {
-      printf("\n상품 ID %d : 재고부족(%d)", i + 1, stock[i]);
-    }
-  }
+  print_max_min(sell, min_sales, max_sales);
+  check_low_stock(stock, amount);
 
   return 0;
 }
