@@ -1,1 +1,7 @@
-![image](https://github.com/user-attachments/assets/96f914b4-7d3d-4d65-bee7-a78e08dbfd4b)
+# C프로그래밍응용
+
+- **1주차**: 배열
+
+- **2주차~3주차**: 포인터
+   
+- **4주차~5주차**: 문자열
